@@ -12,6 +12,8 @@ A lightweight JavaScript library that enables phonetic Hindi typing on webpage t
 - **No Dependencies** – Pure vanilla JavaScript, works in any modern browser.
 - **Lightweight** – Single file, easy to drop into any project.
 
+For a deep dive into how the engine parses your keystrokes — including when to use ambiguity chips and how to force syllable breaks — see the **[Transliteration Guide](TRANSLITERATION_GUIDE.md)**.
+
 ---
 
 ## How to Use
@@ -225,9 +227,12 @@ Works in all modern browsers (Chrome, Firefox, Safari, Edge) that support:
 ## File Structure
 
 ```
-├── transliterator.js   # Main library file
-├── README.md           # This file
-└── LICENSE             # License file
+├── transliterator.js           # Main library file
+├── test.html                 # Interactive test page
+├── test.css                  # Styles for the test page
+├── README.md                 # This file
+├── TRANSLITERATION_GUIDE.md  # Deep-dive into typing mechanics
+└── LICENSE                   # License file
 ```
 
 ---
