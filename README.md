@@ -237,6 +237,12 @@ Works in all modern browsers (Chrome, Firefox, Safari, Edge) that support:
 
 ---
 
+## Attribution
+
+This project was built with assistance from **Claude Code**, Anthropic's official CLI for Claude.
+
+---
+
 ## License
 
 See the [LICENSE](LICENSE) file for details.
