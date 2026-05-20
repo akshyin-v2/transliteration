@@ -1,6 +1,6 @@
 /**
  * Hindi Phonetic Transliterator
- * Google Input Tools-style typing for Devanagari fields.
+ * Phonetic typing for Devanagari fields.
  *
  * Default parsing: consonant-first after a consonant (e.g. kri -> क्रि).
  * When ambiguity is detected, a small chip bar appears below the input

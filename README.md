@@ -1,6 +1,6 @@
 # Hindi Transliterator
 
-A lightweight JavaScript library that enables phonetic Hindi typing on webpage text fields. It converts English (Roman) keystrokes into Devanagari (Hindi) characters in real-time, similar to Google Input Tools.
+A lightweight JavaScript library that enables phonetic Hindi typing on webpage text fields. It converts English (Roman) keystrokes into Devanagari (Hindi) characters in real-time.
 
 ---
 
