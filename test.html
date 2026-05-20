@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hindi Transliterator – Test Page</title>
+  <script src="transliterator.js"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      padding: 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1 { text-align: center; margin-bottom: 0.2em; }
+    .subtitle { text-align: center; color: #666; margin-bottom: 2em; }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 1.15rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      outline: none;
+      font-family: "Noto Sans Devanagari", "Mangal", sans-serif;
+    }
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: #2196f3;
+    }
+    textarea { resize: vertical; min-height: 100px; }
+
+    .debug {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f8f9fa;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .debug strong { display: inline-block; width: 90px; color: #333; }
+
+    .samples {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .sample-btn {
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      background: #fff;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .sample-btn:hover {
+      background: #e3f2fd;
+      border-color: #2196f3;
+    }
+
+    .reference {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 6px;
+      font-size: 0.85rem;
+    }
+    .ref-item {
+      padding: 4px 8px;
+      background: #f8f9fa;
+      border-radius: 4px;
+    }
+    .ref-item code {
+      font-weight: 600;
+      color: #2196f3;
+      margin-right: 6px;
+    }
+
+    .tip {
+      font-size: 0.85rem;
+      color: #555;
+      background: #fffbe6;
+      border-left: 4px solid #f9a825;
+      padding: 10px 14px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hindi Transliterator Test Page</h1>
+  <p class="subtitle">Type using English letters inside the fields below to see Hindi output.</p>
+
+  <!-- Single-line input -->
+  <div class="card">
+    <h2>Single-line Input</h2>
+    <label for="test-input">Text Input</label>
+    <input id="test-input" class="hindi-input" type="text" placeholder="e.g., type 'namaste'">
+
+    <div class="samples">
+      <button class="sample-btn" data-target="test-input" data-text="namaste">namaste</button>
+      <button class="sample-btn" data-target="test-input" data-text="bharat">bharat</button>
+      <button class="sample-btn" data-target="test-input" data-text="shanti">shanti</button>
+      <button class="sample-btn" data-target="test-input" data-text="hindustan">hindustan</button>
+      <button class="sample-btn" data-target="test-input" data-text="krishna">krishna</button>
+      <button class="sample-btn" data-target="test-input" data-text="dhyan">dhyan</button>
+    </div>
+
+    <div class="debug" id="debug-input">
+      <strong>Raw buffer:</strong> <span class="raw">–</span><br>
+      <strong>Hindi:</strong> <span class="hindi">–</span>
+    </div>
+  </div>
+
+  <!-- Multi-line textarea -->
+  <div class="card">
+    <h2>Multi-line Textarea</h2>
+    <label for="test-textarea">Textarea</label>
+    <textarea id="test-textarea" class="hindi-input" placeholder="Try typing a sentence here..."></textarea>
+
+    <div class="samples">
+      <button class="sample-btn" data-target="test-textarea" data-text="hindi bhasha bahut sundar hai">hindi bhasha bahut sundar hai</button>
+      <button class="sample-btn" data-target="test-textarea" data-text="main bharat se hoon">main bharat se hoon</button>
+    </div>
+
+    <div class="debug" id="debug-textarea">
+      <strong>Raw buffer:</strong> <span class="raw">–</span><br>
+      <strong>Hindi:</strong> <span class="hindi">–</span>
+    </div>
+  </div>
+
+  <!-- Quick reference -->
+  <div class="card">
+    <h2>Quick Reference</h2>
+    <div class="reference">
+      <div class="ref-item"><code>k</code> क</div>
+      <div class="ref-item"><code>kh</code> ख</div>
+      <div class="ref-item"><code>g</code> ग</div>
+      <div class="ref-item"><code>gh</code> घ</div>
+      <div class="ref-item"><code>ch</code> च</div>
+      <div class="ref-item"><code>chh</code> छ</div>
+      <div class="ref-item"><code>j</code> ज</div>
+      <div class="ref-item"><code>jh</code> झ</div>
+      <div class="ref-item"><code>t</code> ट</div>
+      <div class="ref-item"><code>th</code> ठ</div>
+      <div class="ref-item"><code>d</code> ड</div>
+      <div class="ref-item"><code>dh</code> ढ</div>
+      <div class="ref-item"><code>tt</code> त</div>
+      <div class="ref-item"><code>thh</code> थ</div>
+      <div class="ref-item"><code>dd</code> द</div>
+      <div class="ref-item"><code>dhh</code> ध</div>
+      <div class="ref-item"><code>p</code> प</div>
+      <div class="ref-item"><code>ph</code> फ</div>
+      <div class="ref-item"><code>b</code> ब</div>
+      <div class="ref-item"><code>bh</code> भ</div>
+      <div class="ref-item"><code>sh</code> श</div>
+      <div class="ref-item"><code>shh</code> ष</div>
+      <div class="ref-item"><code>s</code> स</div>
+      <div class="ref-item"><code>h</code> ह</div>
+      <div class="ref-item"><code>aa</code> आ</div>
+      <div class="ref-item"><code>ee</code> ई</div>
+      <div class="ref-item"><code>oo</code> ऊ</div>
+      <div class="ref-item"><code>ai</code> ऐ</div>
+      <div class="ref-item"><code>au</code> औ</div>
+      <div class="ref-item"><code>ri</code> ऋ</div>
+      <div class="ref-item"><code>ksh</code> क्ष</div>
+      <div class="ref-item"><code>tr</code> त्र</div>
+      <div class="ref-item"><code>gy</code> ज्ञ</div>
+    </div>
+    <p class="tip">
+      <strong>Tip:</strong> When typing ambiguous sequences like <code>sh</code>, <code>th</code>, or <code>t</code>, a chip bar will appear below the input. Click the desired option to choose the correct Hindi letter.
+    </p>
+  </div>
+
+  <script>
+    // Attach transliterator to all fields
+    document.addEventListener('DOMContentLoaded', function () {
+      HindiTransliterator.attach('.hindi-input');
+
+      // Update debug panels on input
+      document.querySelectorAll('.hindi-input').forEach(function (field) {
+        var debugId = field.id === 'test-input' ? 'debug-input' : 'debug-textarea';
+        var debugEl = document.getElementById(debugId);
+
+        field.addEventListener('input', function () {
+          debugEl.querySelector('.raw').textContent = field.dataset.hindiRaw || '';
+          debugEl.querySelector('.hindi').textContent = field.value || '';
+        });
+      });
+
+      // Sample buttons: simulate typing into the target field
+      document.querySelectorAll('.sample-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var targetId = btn.getAttribute('data-target');
+          var text = btn.getAttribute('data-text');
+          var target = document.getElementById(targetId);
+
+          target.dataset.hindiRaw = text;
+          target.value = '';
+
+          // Trigger a manual sync by dispatching a simple input event logic
+          // The library's internal syncField will convert the raw buffer
+          // We'll trick it by setting raw and calling its internal sync if possible,
+          // but since syncField is private, we simulate keystrokes.
+          target.focus();
+          target.dataset.hindiRaw = '';
+          target.value = '';
+          target.dataset.hindiLast = '';
+
+          var chars = text.split('');
+          var i = 0;
+          function typeNext() {
+            if (i >= chars.length) return;
+            var ch = chars[i];
+            var event = new KeyboardEvent('keydown', {
+              key: ch,
+              bubbles: true,
+              cancelable: true
+            });
+            target.dispatchEvent(event);
+            i++;
+            setTimeout(typeNext, 30);
+          }
+          typeNext();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
