@@ -24,21 +24,39 @@ This means if you type a consonant and immediately follow it with another conson
 
 Some Roman strings map to more than one Hindi letter. When ambiguity is detected, a small chip bar appears below the input field. Click the desired chip to choose.
 
-| Typed | Default (chip 1) | Alternate (chip 2) | Example context |
-|-------|------------------|--------------------|-----------------|
-| `sh` | **श** | **ष** | `shanti` → `शांति` (default) vs `षांति` (alternate) |
-| `th` | **ठ** | **थ** | `thanda` → `ठंडा` (default) vs `थanda` (alternate) |
-| `dh` | **ढ** | **ध** | `dhan` → `ढन` (default) vs `धन` (alternate) |
-| `t`  | **ट** | **त** | `tamatar` → `टमाटर` (default) vs `तमाटर` (alternate) |
-| `d`  | **ड** | **द** | `desh` → `डेश` (default) vs `देश` (alternate) |
-| `n`  | **ण** | **न** | `namak` → `णमक` (default) vs `नमक` (alternate) |
-| `ri` after a consonant | **रि** | **ृ** (vowel sign) | `kripa` → `क्रिपा` (default) vs `कृपा` (alternate) |
+| Typed | Default (chip 1) | Alternate (chip 2) | Alternate (chip 3) | Example context |
+|-------|------------------|--------------------|--------------------|-----------------|
+| `sh` | **श** | **ष** | — | `shanti` → `शांति` (default) vs `षांति` (alternate) |
+| `th` | **ठ** | **थ** | — | `thanda` → `ठंडा` (default) vs `थanda` (alternate) |
+| `dh` | **ढ** | **ध** | — | `dhan` → `ढन` (default) vs `धन` (alternate) |
+| `t`  | **ट** | **त** | — | `tamatar` → `टमाटर` (default) vs `तमाटर` (alternate) |
+| `d`  | **ड** | **द** | — | `desh` → `डेश` (default) vs `देश` (alternate) |
+| `n`  | **ण** | **न** | **ं** | `hin` → `हिण` (default) / `हिन` (alt) / `हिं` (alt) |
+| `ri` after a consonant | **रि** | **ृ** (vowel sign) | — | `kripa` → `क्रिपा` (default) vs `कृपा` (alternate) |
 
 **Tip:** The chip bar only appears while the ambiguous sequence is at the **end** of your current typing. Once you continue typing, the default is locked in.
 
 ---
 
-## 2. Forcing a New Syllable — The Extra `a` Trick
+## 2. Bypassing Chips — The `q` Shortcut for Anusvara (ं)
+
+Typing `n` at the end of a word (e.g., `hin`) triggers 3 chips because `n` can map to `ण`, `न`, or `ं` (anusvara). If you already know you want the anusvara, you can skip the chips entirely by using the **`q` shortcut**.
+
+| To get | Type | Instead of |
+|--------|------|------------|
+| `हिं` | `hiq` | `hin` + click chip |
+| `कं` | `kaq` or `kq` | `kan` + click chip |
+| `किं` | `kiq` | `kin` + click chip |
+| `अं` | `aq` | `aan` + click chip |
+
+### How `q` works
+
+- After any Devanagari vowel or matra, `q` immediately produces `ं` (anusvara).
+- At the start of a word or after a consonant, `q` stays as literal `q` (because anusvara cannot attach there).
+
+---
+
+## 3. Forcing a New Syllable — The Extra `a` Trick
 
 Because the parser clusters consonants by default, some words need an **extra `a`** to force the engine to finish the current consonant with its implicit vowel and start a fresh syllable.
 
@@ -88,7 +106,7 @@ This tells the parser:
 
 ---
 
-## 3. Matras (Vowel Signs After Consonants)
+## 4. Matras (Vowel Signs After Consonants)
 
 When a vowel follows a consonant, it usually becomes a **matra** (a combining mark) rather than an independent vowel letter.
 
@@ -110,7 +128,7 @@ Notice that `kri` forms a conjunct (`क्र`) and then applies the matra (`�
 
 ---
 
-## 4. Common Scenarios & Recipes
+## 5. Common Scenarios & Recipes
 
 ### Typing a word ending in a consonant (no implicit vowel)
 
@@ -126,12 +144,13 @@ There is no explicit halant key in the Roman mapping. To force a halant, the par
 |------------|--------------|---------|
 | `am` | **ं** | `hindustan` → `हिंदुस्तान` (if you want the anusvara on the `i`) — actually use `hin` + `dus...` wait. Use `am` at the end of a consonant: `kam` → `कं` |
 | `ah` | **ः** | Similar usage for visarga |
+| `q` | **ं** | **Shortcut:** `hiq` → `हिं`, `kaq` → `कं`. Works after any Devanagari vowel/matra. |
 
-Note: `am` and `ah` after a consonant are treated as matras. If you want them as standalone marks, they follow a consonant.
+Note: `am` and `ah` after a consonant are treated as matras. If you want them as standalone marks, they follow a consonant. The `q` shortcut is the fastest way to type anusvara when you know you want it.
 
 ---
 
-## 5. Summary Cheat Sheet
+## 6. Summary Cheat Sheet
 
 | Goal | Technique |
 |------|-----------|
@@ -140,6 +159,7 @@ Note: `am` and `ah` after a consonant are treated as matras. If you want them as
 | Get long vowel sound | Double the vowel key: `kaa` → `का`, `kee` → `की` |
 | Pick an alternate Hindi letter | Click the chip in the suggestion bar |
 | Keep the default ambiguous mapping | Just keep typing; the default is auto-selected |
+| Type anusvara quickly | Use `q` after a vowel/matra: `hiq` → `हिं` |
 
 ---
 
