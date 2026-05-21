@@ -113,8 +113,8 @@
     const CONSONANTS = {
         k: 'क', kh: 'ख', g: 'ग', gh: 'घ', ng: 'ङ',
         ch: 'च', chh: 'छ', j: 'ज', jh: 'झ', ny: 'ञ',
-        t: 'ट', th: 'ठ', d: 'ड', dh: 'ढ', n: 'ण',
-        tt: 'त', thh: 'थ', dd: 'द', dhh: 'ध', nn: 'न',
+        t: 'त', th: 'थ', d: 'द', dh: 'ध', n: 'न',
+        tt: 'ट', thh: 'ठ', dd: 'ड', dhh: 'ढ', nn: 'ण',
         p: 'प', ph: 'फ', b: 'ब', bh: 'भ', m: 'म',
         y: 'य', r: 'र', l: 'ल', v: 'व', w: 'व',
         sh: 'श', shh: 'ष', s: 'स', h: 'ह',
@@ -125,7 +125,7 @@
     const MATRAS = {
         a: '', aa: 'ा', i: 'ि', ee: 'ी',
         u: 'ु', oo: 'ू', e: 'े', ai: 'ै',
-        o: 'ो', au: 'ौ', ri: 'ृ', am: 'ं', ah: 'ः',
+        o: 'ो', au: 'ौ', ri: 'ृ',
         q: 'ं'
     };
 
@@ -165,8 +165,8 @@
             test:  /th$/,
             label: function (raw) { return transliterateSegment(raw); },
             options: [
-                { name: 'ठ', rewrite: null },
-                { name: 'थ', rewrite: function (raw) { return raw.slice(0, -2) + 'thh'; } }
+                { name: 'थ', rewrite: null },
+                { name: 'ठ', rewrite: function (raw) { return raw.slice(0, -2) + 'thh'; } }
             ]
         },
         {
@@ -174,8 +174,8 @@
             test:  /dh$/,
             label: function (raw) { return transliterateSegment(raw); },
             options: [
-                { name: 'ढ', rewrite: null },
-                { name: 'ध', rewrite: function (raw) { return raw.slice(0, -2) + 'dhh'; } }
+                { name: 'ध', rewrite: null },
+                { name: 'ढ', rewrite: function (raw) { return raw.slice(0, -2) + 'dhh'; } }
             ]
         },
         {
@@ -183,8 +183,8 @@
             test:  /(?:^|[^t])t$/,
             label: function (raw) { return transliterateSegment(raw); },
             options: [
-                { name: 'ट', rewrite: null },
-                { name: 'त', rewrite: function (raw) { return raw.slice(0, -1) + 'tt'; } }
+                { name: 'त', rewrite: null },
+                { name: 'ट', rewrite: function (raw) { return raw.slice(0, -1) + 'tt'; } }
             ]
         },
         {
@@ -192,8 +192,8 @@
             test:  /(?:^|[^d])d$/,
             label: function (raw) { return transliterateSegment(raw); },
             options: [
-                { name: 'ड', rewrite: null },
-                { name: 'द', rewrite: function (raw) { return raw.slice(0, -1) + 'dd'; } }
+                { name: 'द', rewrite: null },
+                { name: 'ड', rewrite: function (raw) { return raw.slice(0, -1) + 'dd'; } }
             ]
         },
         {
@@ -201,8 +201,8 @@
             test:  /(?:^|[^n])n$/,
             label: function (raw) { return transliterateSegment(raw); },
             options: [
-                { name: 'ण', rewrite: null },
-                { name: 'न', rewrite: function (raw) { return raw.slice(0, -1) + 'nn'; } },
+                { name: 'न', rewrite: null },
+                { name: 'ण', rewrite: function (raw) { return raw.slice(0, -1) + 'nn'; } },
                 { name: 'ं', rewrite: function (raw) { return raw.slice(0, -1) + 'q'; } }
             ]
         },
@@ -217,24 +217,6 @@
                 { name: 'ृ',  rewrite: function (raw) { return raw.slice(0, -2) + OVERRIDE_RI; } }
             ]
         },
-        {
-            id: 'ah',
-            test:  /[bcdfghjklmnpqrstvwxyz]ah/,
-            label: function (raw) { return transliterateSegment(raw); },
-            options: [
-                { name: null, rewrite: null },
-                { name: null, rewrite: function (raw) { return raw.replace(/([bcdfghjklmnpqrstvwxyz])ah/, '$1a' + SPLIT + 'h'); } }
-            ]
-        },
-        {
-            id: 'am',
-            test:  /[bcdfghjklmnpqrstvwxyz]am/,
-            label: function (raw) { return transliterateSegment(raw); },
-            options: [
-                { name: null, rewrite: null },
-                { name: null, rewrite: function (raw) { return raw.replace(/([bcdfghjklmnpqrstvwxyz])am/, '$1a' + SPLIT + 'm'); } }
-            ]
-        }
     ];
 
     /* ---------- Trie helpers ----------
