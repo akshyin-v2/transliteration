@@ -170,7 +170,7 @@ By default, `ri` after a consonant forms a conjunct: `kri` → `क्रि` (�
 
 ---
 
-## 5. Bypassing Chips — The `q` Shortcut for Anusvara (ं)
+## 5. Bypassing Chips — The `q` and `qq` Shortcuts
 
 Typing `n` at the end of a word triggers 3 chips because `n` can map to `न`, `ण`, or `ं`. You can skip the chips by using the **`q` shortcut**.
 
@@ -187,8 +187,19 @@ Typing `n` at the end of a word triggers 3 chips because `n` can map to `न`, `
 
 ### How `q` works
 
-- After any Devanagari vowel or matra, `q` immediately produces `ं` (anusvara).
-- At the start of a word or after a consonant, `q` stays as literal `q`.
+- After any Devanagari character, `q` immediately produces `ं` (anusvara).
+- At the start of a word or after a space/punctuation, `q` stays as literal `q`.
+
+### Visarga shortcut (`qq`)
+
+Type **`qq`** after any Devanagari character to get **visarga** (`ः`).
+
+| To get | Type |
+|--------|------|
+| रामः | `raamqq` |
+| हिः | `hiqq` |
+| दुः | `duqq` |
+| कः | `kaqq` |
 
 ---
 
@@ -279,6 +290,7 @@ Notice that `kri` forms a conjunct (`क्र`) and then applies the matra (`�
 | Get vowel sign ृ instead of रि | Use OVERRIDE_RI (ZWSP) before `ri` |
 | Prevent `ri` from becoming `ऋ` | Use `ree` instead (e.g. `haree` → `हरी`) |
 | Get `ंग` instead of `ङ` | Use `q` for anusvara (e.g. `gaqgaa` → `गंगा`) |
+| Type visarga quickly | Use `qq` after any Devanagari char (e.g. `raamqq` → `रामः`) |
 
 ---
 

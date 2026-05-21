@@ -39,6 +39,8 @@
  *                            This lets users skip the n-ambiguity chip bar entirely.
  *                            e.g. hiq → हिं.  If there is no preceding Devanagari char,
  *                            q falls through and is emitted literally.
+ * - qq (visarga shortcut):  after any Devanagari output character, 'qq' produces 'ः'.
+ *                            e.g. raamqq → रामः.
  *
  * AMBIGUITY SYSTEM
  * ----------------
@@ -125,8 +127,7 @@
     const MATRAS = {
         a: '', aa: 'ा', i: 'ि', ee: 'ी',
         u: 'ु', oo: 'ू', e: 'े', ai: 'ै',
-        o: 'ो', au: 'ौ', ri: 'ृ',
-        q: 'ं'
+        o: 'ो', au: 'ौ', ri: 'ृ'
     };
 
     const HALANT = '्';
@@ -300,8 +301,19 @@
                 continue;
             }
 
-            /* Anusvara shortcut: q after a Devanagari matra/vowel produces ं */
-            if (ch === 'q' && !lastWasConsonant && out.length > 0 &&
+            /* Visarga shortcut: qq after any Devanagari char produces ः */
+            if (ch === 'q' && i + 1 < chars.length && chars[i + 1] === 'q' &&
+                out.length > 0 &&
+                /[ऀ-ॿ]/.test(out[out.length - 1])) {
+                out += 'ः';
+                i += 2;
+                continue;
+            }
+
+            /* Anusvara shortcut: q after any Devanagari char produces ं */
+            if (ch === 'q' &&
+                (i + 1 >= chars.length || chars[i + 1] !== 'q') &&
+                out.length > 0 &&
                 /[ऀ-ॿ]/.test(out[out.length - 1])) {
                 out += 'ं';
                 i++;
