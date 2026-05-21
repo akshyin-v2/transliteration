@@ -71,7 +71,7 @@
         },
         {
             id: 't',
-            test:  /([^t])t$/,
+            test:  /(?:^|[^t])t$/,
             label: function (raw) { return transliterateSegment(raw); },
             options: [
                 { name: 'ट', rewrite: null },
@@ -80,7 +80,7 @@
         },
         {
             id: 'd',
-            test:  /([^d])d$/,
+            test:  /(?:^|[^d])d$/,
             label: function (raw) { return transliterateSegment(raw); },
             options: [
                 { name: 'ड', rewrite: null },
@@ -89,7 +89,7 @@
         },
         {
             id: 'n',
-            test:  /([^n])n$/,
+            test:  /(?:^|[^n])n$/,
             label: function (raw) { return transliterateSegment(raw); },
             options: [
                 { name: 'ण', rewrite: null },
